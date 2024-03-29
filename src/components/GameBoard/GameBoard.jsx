@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 const GameBoard = ({ onSelectSquere, turns }) => {
 	let gameBoard = [
 		[null, null, null],
@@ -21,7 +20,8 @@ const GameBoard = ({ onSelectSquere, turns }) => {
 								<button
 									onClick={() => {
 										onSelectSquere(rowIndex, colIndex);
-									}}>
+									}}
+									disabled={playerSymbol !== null}>
 									{playerSymbol}
 								</button>
 							</li>
