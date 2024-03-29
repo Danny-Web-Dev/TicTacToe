@@ -4,15 +4,24 @@ const initialGameBoard = [
 	[null, null, null],
 	[null, null, null],
 ];
-const GameBoard = () => {
-	const [gameBoard, setGameBoard] = useState(initialGameBoard);
-	const handleSelectSquare = (rowIndex, colIndex) => {
-		setGameBoard((prevGameBoard) => {
-			const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
-			updatedBoard[rowIndex][colIndex] = 'X';
-			return updatedBoard;
-		});
-	};
+const GameBoard = ({ onSelectSquere, turns }) => {
+	let gameBoard = initialGameBoard;
+
+	for (const turn of turns) {
+		const { square, player } = turn;
+		const { row, col } = square;
+		gameBoard[row][col] = player;
+	}
+
+	// const [gameBoard, setGameBoard] = useState(initialGameBoard);
+	// const handleSelectSquare = (rowIndex, colIndex) => {
+	// 	setGameBoard((prevGameBoard) => {
+	// 		const updatedBoard = [...prevGameBoard.map((innerArray) => [...innerArray])];
+	// 		updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+	// 		return updatedBoard;
+	// 	});
+	// 	onSelectSquere();
+	// };
 	return (
 		<ol id='game-board'>
 			{gameBoard.map((row, rowIndex) => (
@@ -22,7 +31,7 @@ const GameBoard = () => {
 							<li key={colIndex}>
 								<button
 									onClick={() => {
-										handleSelectSquare(rowIndex, colIndex);
+										onSelectSquere(rowIndex, colIndex);
 									}}>
 									{playerSymbol}
 								</button>
