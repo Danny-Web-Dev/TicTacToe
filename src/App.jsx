@@ -6,8 +6,7 @@ import { useState } from 'react';
 import { WINNING_COMBINATIONS } from './components/winningCombinations.js';
 
 const symbols = ['X', 'O'];
-const playersInitailNames = ['Player 1', 'Player 2'];
-const PLAYERS = { [symbols[0]]: playersInitailNames[0], [symbols[1]]: playersInitailNames[1] };
+const PLAYERS = { [symbols[0]]: 'Player 1', [symbols[1]]: 'Player 2' };
 const INITIAL_GAME_BOARD = [
 	[null, null, null],
 	[null, null, null],
@@ -15,9 +14,15 @@ const INITIAL_GAME_BOARD = [
 ];
 
 const App = () => {
+	// handling state for player names.
 	const [players, setPlayers] = useState(PLAYERS);
+
+	// handling state of board game data.
 	const [gameTurns, setGameTurns] = useState([]);
+
+	// get active player
 	const activePlayer = deriveActivePlayer(gameTurns);
+
 	const gameBoard = deriveGameBoard(gameTurns);
 	const winner = deriveWinner(gameBoard, players);
 	const hasDraw = gameTurns.length === 9 && !winner;
