@@ -1,3 +1,5 @@
+import './GameBoard.css';
+
 const GameBoard = ({ onSelectSquere, gameBoard }) => {
 	return (
 		<ol id='game-board'>

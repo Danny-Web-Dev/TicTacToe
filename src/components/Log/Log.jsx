@@ -1,4 +1,4 @@
-import React from 'react';
+import './Log.css';
 
 const Log = ({ turns }) => {
 	return (
