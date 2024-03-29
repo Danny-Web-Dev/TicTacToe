@@ -42,6 +42,11 @@ const App = () => {
 			return [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
 		});
 	};
+
+	const handleRematchClick = () => {
+		setGameTurns([]);
+	};
+
 	return (
 		<main>
 			<div id='game-container'>
@@ -49,7 +54,7 @@ const App = () => {
 					<Player initialName={playersInitailNames[0]} symbol={symbols[0]} isActive={activePlayer === symbols[0]} />
 					<Player initialName={playersInitailNames[1]} symbol={symbols[1]} isActive={activePlayer === symbols[1]} />
 				</ol>
-				{(winner || hasDraw) && <GameOver winner={winner} />}
+				{(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRematchClick} />}
 				<GameBoard onSelectSquere={handleSelectSquare} gameBoard={gameBoard} />
 			</div>
 			<Log turns={gameTurns} />
