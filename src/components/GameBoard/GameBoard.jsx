@@ -1,15 +1,4 @@
-const GameBoard = ({ onSelectSquere, turns }) => {
-	let gameBoard = [
-		[null, null, null],
-		[null, null, null],
-		[null, null, null],
-	];
-
-	for (const turn of turns) {
-		const { square, player } = turn;
-		const { row, col } = square;
-		gameBoard[row][col] = player;
-	}
+const GameBoard = ({ onSelectSquere, gameBoard }) => {
 	return (
 		<ol id='game-board'>
 			{gameBoard.map((row, rowIndex) => (
