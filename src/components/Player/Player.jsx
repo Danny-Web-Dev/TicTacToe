@@ -5,6 +5,7 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [playerName, setPlayerName] = useState(initialName);
 
+	// handling save player name and lifting name to state the is handled in App.jsx
 	const hangleEditClick = () => {
 		setIsEditing((editing) => !editing);
 		if (isEditing) {
@@ -12,6 +13,7 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
 		}
 	};
 
+	// handling two way binding for input name insertion.
 	const handleChangeName = (e) => {
 		setPlayerName(e.target.value);
 	};

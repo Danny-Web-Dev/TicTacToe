@@ -5,8 +5,8 @@ import { GameOver } from './components/GameOver/GameOver.jsx';
 import { useState } from 'react';
 import { WINNING_COMBINATIONS } from './components/winningCombinations.js';
 
-const symbols = ['X', 'O'];
-const PLAYERS = { [symbols[0]]: 'Player 1', [symbols[1]]: 'Player 2' };
+const SYMBOLS = ['X', 'O'];
+const PLAYERS = { [SYMBOLS[0]]: 'Player 1', [SYMBOLS[1]]: 'Player 2' };
 const INITIAL_GAME_BOARD = [
 	[null, null, null],
 	[null, null, null],
@@ -20,13 +20,19 @@ const App = () => {
 	// handling state of board game data.
 	const [gameTurns, setGameTurns] = useState([]);
 
-	// get active player
+	// get active player based on gameTurns state.
 	const activePlayer = deriveActivePlayer(gameTurns);
 
+	// derive game board based on the gameTurns state.
 	const gameBoard = deriveGameBoard(gameTurns);
+
+	// derive winner based on the gameBoard passing players state for announcing the winner.
 	const winner = deriveWinner(gameBoard, players);
+
+	// check game draw when game raeched 9 moves and no winner was set.
 	const hasDraw = gameTurns.length === 9 && !winner;
 
+	// set to gameTurns state on each square clicked.
 	const handleSelectSquare = (rowIndex, colIndex) => {
 		setGameTurns((prevTurns) => {
 			const currentPlayer = deriveActivePlayer(prevTurns);
@@ -34,6 +40,7 @@ const App = () => {
 		});
 	};
 
+	// save players names state.
 	const handlePlayerNameChange = (symbol, newName) => {
 		setPlayers((prevPlayerNames) => {
 			return { ...prevPlayerNames, [symbol]: newName };
@@ -48,8 +55,8 @@ const App = () => {
 		<main>
 			<div id='game-container'>
 				<ol id='players' className='highlight-player'>
-					<Player initialName={PLAYERS[symbols[0]]} symbol={symbols[0]} isActive={activePlayer === symbols[0]} onChangeName={handlePlayerNameChange} />
-					<Player initialName={PLAYERS[symbols[1]]} symbol={symbols[1]} isActive={activePlayer === symbols[1]} onChangeName={handlePlayerNameChange} />
+					<Player initialName={PLAYERS[SYMBOLS[0]]} symbol={SYMBOLS[0]} isActive={activePlayer === SYMBOLS[0]} onChangeName={handlePlayerNameChange} />
+					<Player initialName={PLAYERS[SYMBOLS[1]]} symbol={SYMBOLS[1]} isActive={activePlayer === SYMBOLS[1]} onChangeName={handlePlayerNameChange} />
 				</ol>
 				{(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRematchClick} />}
 				<GameBoard onSelectSquere={handleSelectSquare} gameBoard={gameBoard} />
@@ -60,9 +67,10 @@ const App = () => {
 };
 
 const deriveActivePlayer = (gameTurns) => {
-	let currentPlayer = symbols[0];
-	if (gameTurns.length > 0 && gameTurns[0].player === symbols[0]) {
-		currentPlayer = symbols[1];
+	// default starter is 'X'.
+	let currentPlayer = SYMBOLS[0];
+	if (gameTurns.length > 0 && gameTurns[0].player === SYMBOLS[0]) {
+		currentPlayer = SYMBOLS[1];
 	}
 
 	return currentPlayer;
@@ -70,9 +78,11 @@ const deriveActivePlayer = (gameTurns) => {
 
 const deriveWinner = (gameBoard, players) => {
 	for (const combination of WINNING_COMBINATIONS) {
+		// extract the gameBoard squeres check if combination exists in the winning combinations data.
 		const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
 		const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
 		const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+		// if winner exists return the player name.
 		if (firstSquareSymbol && firstSquareSymbol === secondSquareSymbol && firstSquareSymbol === thirdSquareSymbol) {
 			return players[firstSquareSymbol];
 		}
@@ -81,6 +91,7 @@ const deriveWinner = (gameBoard, players) => {
 };
 
 const deriveGameBoard = (gameTurns) => {
+	//recreate the game board on each rerender based on the gameTurns state.
 	const gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
 
 	for (const turn of gameTurns) {
