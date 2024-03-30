@@ -1,12 +1,13 @@
 import './Log.css';
 
-const Log = ({ turns }) => {
+const Log = ({ turns, playerNames }) => {
+	console.log(playerNames);
 	return (
 		<>
 			<ol id='log'>
 				{turns.map((turn) => (
 					<li key={`${turn.square.row}${turn.square.col}`}>
-						{turn.player} Selected {turn.square.row}, {turn.square.col}
+						{playerNames[turn.player]} Selected row: {turn.square.row + 1}, column: {turn.square.col + 1}
 					</li>
 				))}
 			</ol>

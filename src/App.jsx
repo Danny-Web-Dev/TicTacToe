@@ -42,6 +42,7 @@ const App = () => {
 
 	// save players names state.
 	const handlePlayerNameChange = (symbol, newName) => {
+		newName = formatName(newName);
 		setPlayers((prevPlayerNames) => {
 			return { ...prevPlayerNames, [symbol]: newName };
 		});
@@ -61,7 +62,7 @@ const App = () => {
 				{(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRematchClick} />}
 				<GameBoard onSelectSquere={handleSelectSquare} gameBoard={gameBoard} />
 			</div>
-			<Log turns={gameTurns} />
+			<Log turns={gameTurns} playerNames={players} />
 		</main>
 	);
 };
@@ -101,6 +102,15 @@ const deriveGameBoard = (gameTurns) => {
 	}
 
 	return gameBoard;
+};
+
+const formatName = (str) => {
+	// Convert the first character to uppercase
+	const firstLetter = str.charAt(0).toUpperCase();
+	// Convert the rest of the characters to lowercase
+	const restOfStr = str.slice(1).toLowerCase();
+	// Concatenate the first uppercase letter with the rest of the string
+	return firstLetter + restOfStr;
 };
 
 export default App;
