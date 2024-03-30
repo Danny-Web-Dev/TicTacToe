@@ -1,7 +1,6 @@
 import './Log.css';
 
 const Log = ({ turns, playerNames }) => {
-	console.log(playerNames);
 	return (
 		<>
 			<ol id='log'>
