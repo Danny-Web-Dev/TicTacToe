@@ -1,8 +1,8 @@
-import './GameBoard.css';
+import styles from './GameBoard.module.css';
 
 const GameBoard = ({ onSelectSquere, gameBoard }) => {
 	return (
-		<ol id='game-board'>
+		<ol id={styles.gameBoard}>
 			{gameBoard.map((row, rowIndex) => (
 				<li key={rowIndex}>
 					<ol>

@@ -1,4 +1,4 @@
-#game-board {
+#gameBoard {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -8,7 +8,7 @@
 	flex-direction: column;
 }
 
-#game-board ol {
+#gameBoard ol {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -17,7 +17,7 @@
 	padding: 0;
 }
 
-#game-board button {
+#gameBoard button {
 	width: 8rem;
 	height: 8rem;
 	border: none;
