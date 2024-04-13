@@ -56,3 +56,6 @@ To run the Tic Tac Toe game locally, follow these steps:
 - Built with React, making it easy to understand and extend.
 - Implements game logic to determine win conditions and handle player turns.
 - Uses CSS for styling and provides a clean and responsive user interface.
+
+
+# Have fun! :)
