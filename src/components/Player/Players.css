@@ -95,3 +95,19 @@
 		box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
 	}
 }
+
+@media (max-width: 768px) {
+	.player {
+		display: flex;
+		flex-direction: column;
+	}
+	.player-name {
+		max-width: 64px;
+	}
+	.player-symbol {
+		margin: auto;
+	}
+	.player input {
+		width: 5rem;
+	}
+}
