@@ -7,7 +7,7 @@
 html {
 	font-family: 'Roboto Slab', sans-serif;
 	line-height: 1.5;
-
+	height: 100vh;
 	color: #ebe7ef;
 
 	font-synthesis: none;
