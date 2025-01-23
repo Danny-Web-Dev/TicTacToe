@@ -62,7 +62,7 @@ const App = () => {
 				{(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRematchClick} />}
 				<GameBoard onSelectSquere={handleSelectSquare} gameBoard={gameBoard} />
 			</div>
-			<Log turns={gameTurns} playerNames={players} />
+			{/*<Log turns={gameTurns} playerNames={players} />*/}
 		</main>
 	);
 };
