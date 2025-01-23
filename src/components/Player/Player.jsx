@@ -6,7 +6,7 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
 	const [playerName, setPlayerName] = useState(initialName);
 
 	// handling save player name and lifting name to state the is handled in App.jsx
-	const hangleEditClick = () => {
+	const handleEditClick = () => {
 		setIsEditing((editing) => !editing);
 		if (isEditing) {
 			onChangeName(symbol, playerName);
@@ -24,7 +24,7 @@ const Player = ({ initialName, symbol, isActive, onChangeName }) => {
 				{isEditing ? <input required value={playerName} onChange={handleChangeName} /> : <span className='player-name'>{playerName}</span>}
 				<span className='player-symbol'>{symbol}</span>
 			</span>
-			<button onClick={hangleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
+			<button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
 		</li>
 	);
 };
